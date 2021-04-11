@@ -27,3 +27,13 @@ resultado *= var1
 resultado /= var1
 # Potencia
 resultado **= var1
+
+# OPERADORES DE COMPARACION
+print(5 == 4)
+# == para saber si el valor de la izq es igual al valor de la derecha (retornara un True o False (bool))
+# != para saber si el valor de la izq  es diferente al valor de la derecha
+print(5 != 4)
+# < > es menor | es mayor
+print(10 > 5)
+# >=, <= , es mayor o igual, es menor o igual
+print(10 >= 10)
