@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "coenraads.bracket-pair-colorizer-2",
+        "nabeelvalley.easyzoom",
+        "oguhpereira.spotify-color-theme",
+        "aaron-bond.better-comments"
+    ]
+}
