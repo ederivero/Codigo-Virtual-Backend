@@ -18,6 +18,12 @@ class CategoriaModel(models.Model):
         help_text='Nombre de la categoria'  # ayuda para que sea visible en el PA
     )
 
+    def __str__(self):
+        # metodo magico que permite la sobre escritura de la representacion del objeto tanto en consola como en el panel administrativo
+        # todo metodo magico tiene __nombre__ esa nomenclatura
+        # * SIEMPRE SE RETORNA UN STRING!!!!
+        return self.categoriaNombre
+
     class Meta:
         # https://docs.djangoproject.com/en/3.2/ref/models/options/
         db_table = 'categorias'  # cambiar el nombre de la tabla en la bd
