@@ -37,7 +37,8 @@ class ProductoModel(models.Model):
     productoNombre = models.CharField(
         db_column='nombre',
         help_text=' Nombre del producto',
-        max_length=45
+        max_length=45,
+        verbose_name='nombre'
     )
     productoPrecio = models.DecimalField(
         max_digits=4,
@@ -65,6 +66,9 @@ class ProductoModel(models.Model):
         verbose_name='categoria',
         help_text='categoria del producto',
     )
+
+    def __str__(self):
+        return "{} de {} unidad(es)".format(self.productoNombre, self.productoCantidad)
 
     class Meta:
         db_table = 'productos'
