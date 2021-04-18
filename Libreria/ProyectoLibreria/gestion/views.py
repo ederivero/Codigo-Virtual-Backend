@@ -19,3 +19,11 @@ class ListarCategoriaController(ListCreateAPIView):
 class CRUDCategoriaController(RetrieveUpdateDestroyAPIView):
     queryset = CategoriaModel.objects.all()
     serializer_class = MostrarCategoriasSerializer
+
+    # def get(self, request, pk):
+    #     data = self.get_queryset().filter(categoriaId=pk)
+    #     if len(data) == 0:
+    #         return Response({
+    #             "error": "No se encontro"
+    #         })
+    #     return Response(self.serializer_class(instance=data, many=True).data)
