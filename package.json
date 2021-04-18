@@ -1,0 +1,12 @@
+{
+  "name": "crud-express",
+  "version": "1.0.0",
+  "description": "Crud en express usando un array",
+  "main": "index.js",
+  "repository": "https://github.com/ederivero/Codigo-Virtual-Backend.git",
+  "author": "Eduardo Ramiro de Rivero Manrique <ederiveroman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
