@@ -1,6 +1,7 @@
 import express from "express";
 import { json } from "body-parser";
 import { conexion } from "./sequelize";
+import * as prueba from "./relaciones";
 
 export default class Server {
   constructor() {
