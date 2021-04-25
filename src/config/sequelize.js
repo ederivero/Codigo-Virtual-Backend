@@ -14,5 +14,6 @@ export const conexion = new Sequelize(
       // sirve para que al momento de mostrar las fechas, automaticamente las convierta en string y no tener que hacer una conversion manual
       dateStrings: true,
     },
+    logging: false,
   }
 );

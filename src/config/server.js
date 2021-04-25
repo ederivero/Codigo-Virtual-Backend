@@ -1,7 +1,7 @@
 import express from "express";
 import { json } from "body-parser";
 import { conexion } from "./sequelize";
-import * as prueba from "./relaciones";
+import { producto_router } from "../routes/producto";
 
 export default class Server {
   constructor() {
@@ -9,10 +9,14 @@ export default class Server {
     // definimos el puerto que por lo general es una variable de entorno (esto solo se da en servidores de produccion como HEROKU, DIGITAL OCEAN, AZURE) en el caso que no encontrase esa variable de entorno usara el numero definido (8000)
     this.port = process.env.PORT || 8000;
     this.bodyParser();
+    this.rutas();
   }
   bodyParser() {
     // sirve para configurar la forma en la cual el API REST va a recibir datos del front mediante el body
     this.app.use(json());
+  }
+  rutas() {
+    this.app.use(producto_router);
   }
   start() {
     // sirve para levantar el servidor en el cual le tenemos que pasar el puerto y si todo es exitoso ingresaremos al callback (segundo parametro)
