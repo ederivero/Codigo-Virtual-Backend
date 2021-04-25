@@ -42,7 +42,7 @@ export const login = async (req, res) => {
     if (resultado) {
       return res.json({
         success: true,
-        content: null,
+        content: usuarioEncontrado.generarJWT(),
         message: "Bienvenido",
       });
     } else {

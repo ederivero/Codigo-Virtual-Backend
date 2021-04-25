@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { conexion } from "../config/sequelize";
 import { hashSync, compareSync } from "bcrypt";
+import { sign } from "jsonwebtoken";
 // Para ver las validaciones disponibles => https://sequelize.org/master/manual/validations-and-constraints.html#per-attribute-validations
 export default () => {
   let usuario = conexion.define(
@@ -47,6 +48,16 @@ export default () => {
   usuario.prototype.validarPassword = function (password) {
     // compara la contraseña entrante con el hash guardado en la bd, si la contraseña es correcta retornara true, caso contrario false
     return compareSync(password, this.usuarioPassword);
+  };
+  usuario.prototype.generarJWT = function () {
+    // el payload es la parte en la cual podemos agregar informacion adicional para que el front la pueda utilizar a su conveniencia (no se necesita desencriptar nada, no necesita contraseña)
+    const payload = {
+      usuarioId: this.usuarioId,
+      usuarioCorreo: this.usuarioCorreo,
+    };
+    // luego indico la firma que va a servir para encriptar la JWT
+    const password = "password";
+    return sign(payload, password, { expiresIn: "1h" });
   };
 
   return usuario;
