@@ -2,7 +2,7 @@ import express from "express";
 import { json } from "body-parser";
 import { conexion } from "./sequelize";
 import { producto_router } from "../routes/producto";
-
+import { usuario_router } from "../routes/usuario";
 export default class Server {
   constructor() {
     this.app = express();
@@ -17,6 +17,7 @@ export default class Server {
   }
   rutas() {
     this.app.use(producto_router);
+    this.app.use(usuario_router);
   }
   start() {
     // sirve para levantar el servidor en el cual le tenemos que pasar el puerto y si todo es exitoso ingresaremos al callback (segundo parametro)

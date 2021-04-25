@@ -12,6 +12,7 @@ export default () => {
         autoIncrement: true,
         primaryKey: true,
         unique: true,
+        allowNull: false,
       },
       usuarioNombre: {
         field: "nombre",
