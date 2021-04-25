@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import { conexion } from "../config/sequelize";
-import { hashSync } from "bcrypt";
+import { hashSync, compareSync } from "bcrypt";
 // Para ver las validaciones disponibles => https://sequelize.org/master/manual/validations-and-constraints.html#per-attribute-validations
 export default () => {
   let usuario = conexion.define(
@@ -43,6 +43,10 @@ export default () => {
   usuario.prototype.setearPassword = function (password) {
     const hash = hashSync(password, 10);
     this.usuarioPassword = hash;
+  };
+  usuario.prototype.validarPassword = function (password) {
+    // compara la contraseña entrante con el hash guardado en la bd, si la contraseña es correcta retornara true, caso contrario false
+    return compareSync(password, this.usuarioPassword);
   };
 
   return usuario;
