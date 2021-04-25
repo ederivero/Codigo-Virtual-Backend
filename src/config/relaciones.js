@@ -16,7 +16,10 @@ export const Usuario = usuario_model();
 // https://sequelize.org/master/manual/assocs.html
 // una vez definida todos los modelos ahora pasamos a crear sus relaciones
 // una categoria TIENE MUCHOS estantes
+// si no queremos perder toda la informacion de la base de datos por solamente resetear una tabla o varias tablas,
 
+// tambien podemos SOLAMENTE eliminar y volver a crear una tabla en las relaciones llamando a dicho modelo y a su propiedad sync({force:true})
+// Usuario.sync({ force: true });
 Categoria.hasMany(Estante, {
   foreignKey: {
     name: "categorias_id",

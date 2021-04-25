@@ -33,3 +33,19 @@ export const crearProducto = async (req, res) => {
     });
   }
 };
+export const listarProductos = async (req, res) => {
+  try {
+    const productos = await Producto.findAll();
+    return res.json({
+      success: true,
+      content: productos,
+      message: null,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      content: error,
+      message: "Error al devolver los productos",
+    });
+  }
+};
