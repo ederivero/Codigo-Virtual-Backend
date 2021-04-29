@@ -6,10 +6,12 @@
   "author": "Eduardo Ramiro de Rivero Manrique <ederiveroman@gmail.com>",
   "scripts": {
     "start:dev": "nodemon --exec babel-node ./src/index.js",
-    "start": "node ./src/index.js"
+    "build": "babel src/ --out-dir build",
+    "start": "node ./build/index.js"
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.13.16",
     "@babel/core": "^7.13.16",
     "@babel/node": "^7.13.13",
     "@babel/preset-env": "^7.13.15"
