@@ -10,10 +10,13 @@ export default () =>
         type: DataTypes.INTEGER,
         primaryKey: true,
         field: "id",
+        autoIncrement: true,
+        unique: true,
       },
       categoriaNombre: {
         type: DataTypes.STRING(45),
         field: "nombre",
+        unique: true,
       },
     },
     {
