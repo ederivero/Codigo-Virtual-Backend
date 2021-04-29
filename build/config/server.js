@@ -37,6 +37,7 @@ class Server {
     this.app.use(_producto.producto_router);
     this.app.use(_usuario.usuario_router);
     this.app.use(_categoria.categoria_router);
+    this.app.get("/", (req, res) => res.send("Bienvenido a mi API"));
   }
 
   start() {
