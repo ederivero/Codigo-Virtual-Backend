@@ -1,3 +1,4 @@
+require("dotenv").config();
 import { DataTypes } from "sequelize";
 import { conexion } from "../config/sequelize";
 import { hashSync, compareSync } from "bcrypt";
@@ -57,8 +58,7 @@ export default () => {
       usuarioCorreo: this.usuarioCorreo,
     };
     // luego indico la firma que va a servir para encriptar la JWT
-    const password = "password";
-    return sign(payload, password, { expiresIn: "1h" });
+    return sign(payload, process.env.JWT_SECRET, { expiresIn: "1h" });
   };
 
   return usuario;
