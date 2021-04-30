@@ -7,7 +7,14 @@ exports.conexion = void 0;
 
 var _sequelize = require("sequelize");
 
-const conexion = new _sequelize.Sequelize("almacen", // database name
+const conexion = process.env.JAWSDB_URL ? new _sequelize.Sequelize(process.env.JAWSDB_URL, {
+  dialect: "mysql",
+  timezone: "-05:00",
+  logging: false,
+  dialectOptions: {
+    dateStrings: true
+  }
+}) : new _sequelize.Sequelize("almacen", // database name
 "root", // username
 "root", // password
 {
