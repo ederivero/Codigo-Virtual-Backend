@@ -5,6 +5,11 @@
   "repository": "https://github.com/ederivero/Codigo-Virtual-Backend.git",
   "author": "Eduardo Ramiro de Rivero Manrique <ederiveroman@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node ./dist/index.js",
+    "start:dev": "nodemon --exec babel-node ./src/index.js",
+    "build":"babel src --out-dir build"
+  },
   "devDependencies": {
     "@babel/cli": "^7.13.16",
     "@babel/core": "^7.14.0",
