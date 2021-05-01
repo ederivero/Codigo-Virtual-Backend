@@ -55,7 +55,7 @@ export const login = async (req, res) => {
   // https://docs.mongodb.com/manual/reference/operator/query/regex/
   // ? SELECT * FROM USUARIO WHERE EMAIL LIKE '%ederivero%'
   // await Usuario.findOne({
-  //   usuarioCorreo: {$regex: ".*"127.0.0.1:8000/registro+email+"*."}
+  //   usuarioCorreo: {$regex: ".*"+email+"*."}
   // })
   // * SEGUNDA FORMA
   // https://mongoosejs.com/docs/api/query.html#query_Query-where
