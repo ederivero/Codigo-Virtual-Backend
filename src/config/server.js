@@ -1,5 +1,7 @@
 import express from "express";
 import { json } from "body-parser";
+import { connect } from "mongoose";
+require("dotenv").config();
 
 export default class Server {
   constructor() {
@@ -20,6 +22,16 @@ export default class Server {
     // sirve para levantar el servidor en el cual le tenemos que pasar el puerto y si todo es exitoso ingresaremos al callback (segundo parametro)
     this.app.listen(this.port, async () => {
       console.log(`Servidor corriendo en: http://127.0.0.1:${this.port}`);
+      try {
+        await connect(process.env.MONGO_COMPASS, {
+          useNewUrlParser: true, // para indicar que estamos usando el nuevo formato de conexion URI
+          useUnifiedTopology: true, //para indicar que vamos a usar el nuevo formato de administracion de conexiones
+          // para mas informacion acerca de las configuraciones disponibles: https://mongoosejs.com/docs/connections.html#options
+        });
+        console.log("Base de datos conectada exitosamente");
+      } catch (error) {
+        console.error(error);
+      }
     });
   }
 }
