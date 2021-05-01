@@ -1,6 +1,7 @@
 import express from "express";
 import { json } from "body-parser";
 import { connect } from "mongoose";
+import { usuario_router } from "../routes/usuario";
 require("dotenv").config();
 
 export default class Server {
@@ -16,6 +17,7 @@ export default class Server {
     this.app.use(json());
   }
   rutas() {
+    this.app.use(usuario_router);
     this.app.get("/", (req, res) => res.send("Bienvenido a mi API"));
   }
   start() {
