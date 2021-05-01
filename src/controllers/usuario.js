@@ -55,7 +55,7 @@ export const login = async (req, res) => {
   // https://docs.mongodb.com/manual/reference/operator/query/regex/
   // ? SELECT * FROM USUARIO WHERE EMAIL LIKE '%ederivero%'
   // await Usuario.findOne({
-  //   usuarioCorreo: {$regex: ".*"+email+"*."}
+  //   usuarioCorreo: {$regex: ".*"127.0.0.1:8000/registro+email+"*."}
   // })
   // * SEGUNDA FORMA
   // https://mongoosejs.com/docs/api/query.html#query_Query-where
@@ -75,7 +75,15 @@ export const login = async (req, res) => {
   }
   const resultado = compareSync(password, usuario.usuarioPassword);
   if (resultado) {
-    // TODO implementar el JWT
+    /**
+     * ! EN VEZ DE REALIZAR EL RETO 20 y 21 hacer lo siguiente
+     * TODO: Primer parte: implementar jwt
+     * ? 1. la password de la token guardarla en el archivo .env
+     * ? 2. usar process.env.JWT_SECRET
+     * TODO: SEGUNDA PARTE: crear una ruta para crear y devolver todas las tareas de un usuario pero proteger la ruta con un JWT
+     * TODO: TERCERA PARTE: subirlo a un REPO en github y compartir el repo
+     */
+
     return res.json({
       success: true,
       content: null,
