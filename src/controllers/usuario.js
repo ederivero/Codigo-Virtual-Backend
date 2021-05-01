@@ -1,5 +1,5 @@
 import { Usuario } from "../models/usuario";
-import { hashSync } from "bcrypt";
+import { hashSync, compareSync } from "bcrypt";
 
 export const registro = async (req, res) => {
   // hay dos formas de hacer una creacion
@@ -46,5 +46,46 @@ export const registro = async (req, res) => {
   ]);
   */
 };
-export const login = (req, res) => {};
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  const usuario = await Usuario.findOne({
+    usuarioCorreo: email,
+  });
+  // * PRIMERA FORMA
+  // https://docs.mongodb.com/manual/reference/operator/query/regex/
+  // ? SELECT * FROM USUARIO WHERE EMAIL LIKE '%ederivero%'
+  // await Usuario.findOne({
+  //   usuarioCorreo: {$regex: ".*"+email+"*."}
+  // })
+  // * SEGUNDA FORMA
+  // https://mongoosejs.com/docs/api/query.html#query_Query-where
+  // * Esto retorna un array de coincidencias
+  // await Usuario.where({
+  //     usuarioCorreo: email
+  // })
+  // * TERCERA FORMA
+  // ? encuentrame todos los usuarios que su correo sea email y que su fecha de nacimiento sea mayor que 2000-01-01
+  // await Usuario.where("usuarioCorreo").equals(email).where("usuarioFechaNacimiento").gt("2000-01-01")
+  if (!usuario) {
+    return res.status(404).json({
+      success: false,
+      content: null,
+      message: "Usuario no existe",
+    });
+  }
+  const resultado = compareSync(password, usuario.usuarioPassword);
+  if (resultado) {
+    // TODO implementar el JWT
+    return res.json({
+      success: true,
+      content: null,
+      message: "bienvenido",
+    });
+  }
+  return res.status(401).json({
+    success: false,
+    content: null,
+    message: "credenciales incorrectas",
+  });
+};
 export const mostrarUsuario = (req, res) => {};
