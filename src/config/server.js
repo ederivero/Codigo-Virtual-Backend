@@ -1,5 +1,6 @@
 import express from "express";
 import { json } from "body-parser";
+import { usuario_router } from "../routes/usuario";
 // sirve para utilizar las variables del archivo .env
 require("dotenv").config();
 
@@ -27,6 +28,7 @@ export class Server {
     this.app.use(json());
   }
   rutas() {
+    this.app.use(usuario_router);
     this.app.get("/", (req, res) => {
       res.send("Bienvenido a mi API 😀");
     });
