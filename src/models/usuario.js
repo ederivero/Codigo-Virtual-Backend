@@ -17,6 +17,7 @@ const telefonoSchema = new Schema(
     codigo_ciudad: Schema.Types.Number,
     numero: {
       type: Schema.Types.Number,
+      unique: true,
       required: true,
     },
   },
