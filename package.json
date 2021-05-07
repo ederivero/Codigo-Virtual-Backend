@@ -1,0 +1,27 @@
+{
+  "name": "virtual-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ederivero/Codigo-Virtual-Backend.git",
+  "author": "Eduardo Ramiro de Rivero Manrique <ederiveroman@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "nodemon --exec babel-node ./src/index.js",
+    "start": "node ./build/index.js",
+    "build": "babel src/ --out-dir buid/"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^5.8.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.7",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.16",
+    "@babel/core": "^7.14.0",
+    "@babel/node": "^7.13.13",
+    "@babel/preset-env": "^7.14.1",
+    "dotenv": "^9.0.0"
+  }
+}
