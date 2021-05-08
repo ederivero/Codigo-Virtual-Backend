@@ -47,3 +47,6 @@ export const subirArchivo = (archivo) => {
     blobStream.end(archivo.buffer);
   });
 };
+
+export const eliminarArchivo = (nombreArchivo) =>
+  bucket.file(nombreArchivo).delete();

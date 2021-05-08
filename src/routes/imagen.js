@@ -21,3 +21,5 @@ imagen_router.post(
   multer.single("imagen"),
   imagen_controller.subirImagen
 );
+
+imagen_router.delete("/eliminarImagen", imagen_controller.eliminarImagen);
