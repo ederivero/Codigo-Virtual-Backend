@@ -32,7 +32,7 @@ export const subirArchivo = (archivo) => {
       file
         .getSignedUrl({
           action: "read",
-          expires: "31-12-2021",
+          expires: "12-31-2021", // MM-DD-YYYY
         })
         .then((link) => {
           return resuelto(link);
