@@ -19,7 +19,7 @@ export class Server {
       // Permitir los origenes (dominios) para que puedan consultar a mi API
       res.header("Access-Control-Allow-Origin", "*");
       // Permitir las cabeceras siguientes
-      res.header("Access-Control-Allow-Header", "Content-Type, Authorization");
+      res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
       // Permitir los metodos siguientes
       res.header("Access-Control-Allow-Methods", "GET, POST, PUT");
       // Si todo cumple con lo estipulado anteriormente
