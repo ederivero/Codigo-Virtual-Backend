@@ -57,3 +57,47 @@ class AlmacenModel(models.Model):
         verbose_name = "almacen"
         # se vera en el listado pero de una manera plural ya que puede contener varios registros
         verbose_name_plural = "almacenes"
+
+
+class ProductoModel(models.Model):
+    productoId = models.AutoField(
+        primary_key=True,
+        null=False,
+        unique=True,
+        db_column="id"
+    )
+    # nombre tiene que ser hasta 50 char y descrip hasta 100, ambos no pueden ser nulos, el nombre tiene que ser unico , y la descripcion su valor por defecto tiene que ser "Por el momento no hay descripcion del producto", en el estado su valor por defecto tiene que ser true, no puede ser nulo
+    productoNombre = models.CharField(
+        max_length=50,
+        null=False,
+        unique=True,
+        db_column="nombre"
+    )
+    productoDescripcion = models.CharField(
+        max_length=100,
+        null=False,
+        default="Por el momento no hay descripcion del producto",
+        db_column="descripcion"
+    )
+    productoEstado = models.BooleanField(
+        default=True,
+        db_column="estado",
+        null=False,
+    )
+    productoPrecio = models.DecimalField(
+        max_digits=5,  # para indicar cuantos numeros en total seran permitidos almacenar
+        decimal_places=2,  # para indicar del total de numeros cuantos decimales se podran almacenar
+        db_column="precio",
+        null=False
+    )
+    # RELACIONES
+    #
+    almacenId = models.ForeignKey(
+        to=AlmacenModel,
+        # on_delete=
+    )
+
+    class Meta:
+        db_table = "productos"
+        verbose_name = "producto"
+        verbose_name_plural = "productos"
