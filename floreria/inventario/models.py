@@ -41,11 +41,17 @@ class AlmacenModel(models.Model):
         # para cuando querramos leer la informacion de la bd que nos devuelva en un orden especifico, en este caso le estamos diciendo que retorne ordenado por la columna nombre en forma ASC, si quisiesemos de forma DESC se coloca un "-" al comienzo
         ordering = ["nombre", ]
         # sirve para hacer que dos o mas columnas no se pueda repetir su misma informacion de todas esas columnas juntas
-        unique_together = [["nombre", "direccion"]]
+        unique_together = [["nombre", "direccion"], ["direccion", "estado"]]
+        # Validacion 1:
         # Almacen A | Calle juanes 123 ✅
         # Almacen A | Calle juanes 123 ❌
         # Almacen A | Calle Chinchuli 345 ✅
         # Almaben B | Calle juanes 123 ✅
+        # Validacion 2:
+        # Calle Juanes 123 | true ✅
+        # Calle Juanes 123 | true ❌
+        # Calle Juanes 123 | false ✅
+        # Calle achiote 123 | true ✅
         # ! NOTA: Los siguientes campos son para el panel administrativo:
         # se vera en el listado de los modelos en el panel administrativo
         verbose_name = "almacen"
