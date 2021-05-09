@@ -39,9 +39,10 @@ class AlmacenModel(models.Model):
         # para cambiar el nombre de la tabla en la bd:
         db_table = "almacenes"
         # para cuando querramos leer la informacion de la bd que nos devuelva en un orden especifico, en este caso le estamos diciendo que retorne ordenado por la columna nombre en forma ASC, si quisiesemos de forma DESC se coloca un "-" al comienzo
-        ordering = ["nombre", ]
+        ordering = ["almacenNombre", ]
         # sirve para hacer que dos o mas columnas no se pueda repetir su misma informacion de todas esas columnas juntas
-        unique_together = [["nombre", "direccion"], ["direccion", "estado"]]
+        unique_together = [["almacenNombre", "almacenDireccion"], [
+            "almacenDireccion", "almacenEstado"]]
         # Validacion 1:
         # Almacen A | Calle juanes 123 ✅
         # Almacen A | Calle juanes 123 ❌
@@ -91,10 +92,22 @@ class ProductoModel(models.Model):
         null=False
     )
     # RELACIONES
-    #
+
     almacenId = models.ForeignKey(
         to=AlmacenModel,
-        # on_delete=
+        # sirve para indicar que sucedera cuando un registro que hace referencia a una fk sea eliminado, y sus opciones son:
+        # CASCADE = si la pk es eliminada todas sus referencias tbn seran eliminadas
+        # PROTECT = no permitira la eliminacion de la pk siempre y cuando tenga referencias
+        # SET_NULL = si la pk es eliminada, sus referencias pasaran a un valor de NULL
+        # DO_NOTHING = si la pk es eliminada, mantendra el mismo valor sus referencias, lo que ocasionara una mala integridad de los datos
+        # RESTRICT = no permite la eliminacion de la pk y lanzara un error de tipo RestrictedError
+        # https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.ForeignKey.on_delete
+        on_delete=models.PROTECT,
+        db_column="almacenes_id",
+        # related_name = para ingresar a su relacion inversa, es decir cuando querramos saber todos los productos que tienen un almacen en especifico, si no se otorga un nombre, django le pondra uno usando un formato establecido: usara el nombre del modelo con el sufijo _set => almacen_set
+        # https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.ForeignKey.related_name
+        # https://docs.djangoproject.com/en/3.2/topics/db/queries/#backwards-related-objects
+        related_name="almacenProductos"
     )
 
     class Meta:
