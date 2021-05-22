@@ -64,6 +64,9 @@ export default class Server {
         console.log(motivo);
         this.io.emit("lista-usuarios", usuarios);
       });
+
+      // ...
+      this.io.emit("lista-usuarios", usuarios);
     });
   }
   start() {

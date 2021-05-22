@@ -19,4 +19,18 @@ ingresar.onclick = (e) => {
 socket.on("lista-usuarios", (usuarios) => {
   console.log("La lista de usuarios es:");
   console.log(usuarios);
+  listaUsuarios.innerHTML = "";
+  for (const key in usuarios) {
+    const usuarioLi = document.createElement("li");
+    usuarioLi.className = "list-group-item";
+    usuarioLi.innerText = usuarios[key].nombre;
+    listaUsuarios.appendChild(usuarioLi);
+  }
+});
+
+mensaje.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    socket.emit("crear-mensaje", mensaje.value);
+    console.log(mensaje.value);
+  }
 });
