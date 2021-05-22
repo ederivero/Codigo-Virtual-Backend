@@ -35,6 +35,9 @@ export default class Server {
     console.log("Escuchando los sockets");
     this.io.on("connect", (cliente) => {
       console.log(`Se conecto el cliente ${cliente.id}`);
+      cliente.on("coordenada", (data) => {
+        console.log(data);
+      });
     });
   }
   start() {
