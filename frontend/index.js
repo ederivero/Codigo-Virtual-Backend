@@ -8,7 +8,9 @@ const listaMensaje = document.getElementById("lista-mensajes");
 socket.on("connect", () => {
   console.log("Me conecte al socket del back!");
 });
-
+socket.on("cliente", (cliente) => {
+  console.log(cliente);
+});
 ingresar.onclick = (e) => {
   e.preventDefault();
   ingresar.disabled = true;
@@ -33,4 +35,8 @@ mensaje.addEventListener("keyup", (e) => {
     socket.emit("crear-mensaje", mensaje.value);
     console.log(mensaje.value);
   }
+});
+
+socket.on("lista-mensajes", (mensajes) => {
+  console.log(mensajes);
 });

@@ -64,8 +64,20 @@ export default class Server {
         console.log(motivo);
         this.io.emit("lista-usuarios", usuarios);
       });
-
-      // ...
+      // recibir el evento crear-mensaje e imprimir el mensaje enviado 📧
+      cliente.on("crear-mensaje", (mensaje) => {
+        mensajes.push({
+          id: cliente.id,
+          mensaje,
+          fecha: new Date(),
+        });
+        // cliente.emit() => cuando llamamos al cliente en el cual estamos conectados y hacemos un emit solamente se va a emitir el evento al mismo cliente
+        // cliente.broadcast.emit() => hara un broadcast a todos los demas clientes conectados al socket EXCEPTUANDO al propio cliente que emitio el evento
+        // this.io.emit() => emitira el evento a todos los clientes conectados al socket
+        // cliente.emit("lista-mensajes", mensajes);
+        this.io.emit("lista-mensajes", mensajes);
+      });
+      cliente.emit("cliente", cliente.id);
       this.io.emit("lista-usuarios", usuarios);
     });
   }
