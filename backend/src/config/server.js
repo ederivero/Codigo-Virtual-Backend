@@ -48,7 +48,6 @@ export default class Server {
       console.log(cliente.id);
 
       cliente.on("configurar-cliente", (nombre) => {
-        console.log(nombre);
         usuarios.push({
           id: cliente.id,
           nombre,
@@ -66,8 +65,12 @@ export default class Server {
       });
       // recibir el evento crear-mensaje e imprimir el mensaje enviado 📧
       cliente.on("crear-mensaje", (mensaje) => {
+        const { nombre } = usuarios.filter(
+          (usuario) => usuario.id === cliente.id
+        )[0];
         mensajes.push({
           id: cliente.id,
+          nombre,
           mensaje,
           fecha: new Date(),
         });

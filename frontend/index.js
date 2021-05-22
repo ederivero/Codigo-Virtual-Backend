@@ -34,9 +34,17 @@ mensaje.addEventListener("keyup", (e) => {
   if (e.key === "Enter") {
     socket.emit("crear-mensaje", mensaje.value);
     console.log(mensaje.value);
+    mensaje.value = "";
   }
 });
 
 socket.on("lista-mensajes", (mensajes) => {
   console.log(mensajes);
+  listaMensaje.innerHTML = "";
+  mensajes.forEach((mensaje) => {
+    console.log(mensaje);
+    const mensajeLi = document.createElement("li");
+    mensajeLi.innerText = `${mensaje.nombre} dice: ${mensaje.mensaje}. Enviado el ${mensaje.fecha}`;
+    listaMensaje.appendChild(mensajeLi);
+  });
 });
