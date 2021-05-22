@@ -41,7 +41,7 @@ export default class Server {
   }
   configuracionSockets() {
     let usuarios = [];
-    const mensajes = [];
+    let mensajes = [];
     this.io.on("connect", (cliente) => {
       // el metodo connect se llamara cuando un cliente se conecte al servicio de sockets
       console.log("SE CONECTO EL CLIENTE:");
@@ -59,9 +59,11 @@ export default class Server {
         // USAR EL METODO FILTER de los arrays
         console.log(`Se desconecto el cliente ${cliente.id}`);
         usuarios = usuarios.filter((usuario) => usuario.id !== cliente.id);
+        mensajes = mensajes.filter((mensaje) => mensaje.id !== cliente.id);
         console.log(usuarios);
         console.log(motivo);
         this.io.emit("lista-usuarios", usuarios);
+        cliente.broadcast.emit("lista-mensajes", mensajes);
       });
       // recibir el evento crear-mensaje e imprimir el mensaje enviado 📧
       cliente.on("crear-mensaje", (mensaje) => {
