@@ -4,6 +4,7 @@ function setup() {
   createCanvas(300, 300);
   background(100);
   socket.on("coordenadas", (data) => {
+    console.log(data);
     fill(0, 0, 255);
     noStroke();
     ellipse(data.x, data.y, 15, 15);

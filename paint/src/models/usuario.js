@@ -19,6 +19,10 @@ const usuarioSchema = new Schema(
       type: Schema.Types.String,
       required: true,
     },
+    color: {
+      type: Schema.Types.String,
+      required: true,
+    },
     coordenadas: [coordenadasSchema],
   },
   { timestamps: false }
