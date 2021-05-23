@@ -21,7 +21,7 @@ function setup() {
 // mouseDragged => solamente se pintara cuando hagamos click
 // draw => basta con pasar el cursor por el canvas
 function mouseDragged() {
-  fill("#00000");
+  fill("#70EF41");
   noStroke(); // sirve para no bordear el lienzo
   ellipse(mouseX, mouseY, 15, 15);
   enviarPunto(mouseX, mouseY);

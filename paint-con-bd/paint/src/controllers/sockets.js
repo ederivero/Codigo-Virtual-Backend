@@ -8,7 +8,7 @@ const getRandomColor = () => {
 
 export const ingresarCoordenada = async (data, cliente) => {
   // creo mi instancia de mi servidor, y gracias al patron Singleton si ya hay una instancia creada, no creara otra y se reusara la que ya esta creada
-  const objServidor = new Server();
+  // const objServidor = new Server();
   // de la informacion que me esta mandando mi cliente del socket, extraere la posicion x, posicion y y el nombre del usuario
   const { x, y } = data;
   // buscare segun el nombre del usuario, sus cooredenadas
