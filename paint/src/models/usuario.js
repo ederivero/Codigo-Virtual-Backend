@@ -18,6 +18,7 @@ const usuarioSchema = new Schema(
     nombre: {
       type: Schema.Types.String,
       required: true,
+      unique: true,
     },
     color: {
       type: Schema.Types.String,

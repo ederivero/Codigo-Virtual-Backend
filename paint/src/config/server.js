@@ -37,8 +37,8 @@ export default class Server {
     this.io.on("connect", (cliente) => {
       console.log(`Se conecto el cliente ${cliente.id}`);
       cliente.on("coordenada", (data) => {
-        ingresarCoordenada(data);
         console.log(data);
+        ingresarCoordenada(data, cliente);
       });
     });
   }
